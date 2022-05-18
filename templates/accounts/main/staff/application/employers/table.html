@@ -1,0 +1,65 @@
+{% load static %}
+<table id="example23"  class="display nowrap table table-hover table-striped border" cellspacing="0" width="100%">
+    <thead>
+        <tr  class="record">
+            <th>Person</th>  
+            <th hidden>qualification</th>
+            <th hidden>yrs_of_experience</th>
+            <th hidden>Payment Budget</th>
+            <th hidden >Location</th>
+            <th hidden >Desciption</th>
+            <th hidden >Created at</th>
+            <th>cv</th>
+            <th>status</th>
+            <th>Action</th>
+        </tr>
+    </thead> 
+    <tbody >
+        {%for application in employer_job_applications %}
+        <tr class="record">
+            <td>{{application.user }}</td>  
+            <td hidden >{{application.highest_qualification }}</td>  
+            <td hidden >{{application.yrs_of_experience }}</td>  
+            <td hidden >{{application.payment_budget }}</td>  
+            <td hidden >{{application.location }}</td>  
+            <td hidden >{{application.desciption }}</td>  
+            <td hidden >{{application.created_at }}</td>
+            <td>{% if application.cv %}<a href="{{ application.cv}}" download><span class="label label-primary" > {{ application.cv|cut:'users/' }}</span></a>{% else %}Not Available{% endif %}</td> 
+            <td><span class="label label-success"> {{application.get_status_display}}</span></td> 
+            <td> 
+                <a  class="ViewMyAppModalBtn"   id="app" app-data="{{ employers_job_applications }}"> <span class="label label-danger"><i class="fa fa-eye"></i></span> </a>
+                <a  class="ViewMyAppModalBtn"   id="app" app-data="{{ employers_job_applications }}"> <span class="label label-success"><i class="fa fa-arrow-up-square"></i></span> </a>
+            </td>
+        </tr> 
+        {%endfor%}
+    </tbody>
+</table> 
+
+<script>
+    $(function () {
+        $('#myTable').DataTable();
+        
+        // Order by the grouping
+        $('#example tbody').on('click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                table.order([2, 'desc']).draw();
+            } else {
+                table.order([2, 'asc']).draw();
+            }
+        });
+        // responsive table
+        $('#config-table').DataTable({
+            responsive: true
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print' 
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary me-1 ');
+    });
+
+</script>
+<script src="{% static 'main/dist/js/pages/custom/staff/application/table.js' %}"></script> 

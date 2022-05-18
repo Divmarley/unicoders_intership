@@ -1,0 +1,11 @@
+<h1>Success</h1>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <button type='submit' class="btn btn-sm btn-success">
+        Send
+    </button>
+</form>
+{% for m in msg %}
+hi
+{% endfor %}

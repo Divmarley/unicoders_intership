@@ -1,0 +1,208 @@
+{% extends 'accounts/main/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}</title>
+{% block content %}
+{% block styless %}
+<link rel="stylesheet" type="text/css" href="{% static 'main/assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/assets/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css' %}">{% endblock styless %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    {% include 'accounts/main/partials/bread_crumb.html' %}
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h4 class="card-title">
+                                <h6 class="card-title">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                            </h4>
+                        </div>
+                        <div class="col-sm-2"> 
+                            <button
+                            type="button"
+                            class="btn btn-info float-right text-white"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever="@mdo"
+                            >
+                            <i class="fa fa-plus-circle"></i> Create New
+                            </button> 
+                        </div><br/>
+                    </div>
+                    <div class="m-t-40 table-responsive" data-href="{% url 'employers:get-job-application-table' %}">
+                       
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Job Description</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" id="formAddNew">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input class="form-control" placeholder="Job Title" name="title" id="message-text1"> 
+                    </div> 
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control form-select" data-placeholder="Choose a Category" tabindex="1" name="related_field">
+                                    <option value="">--Industry--</option>
+                                    <option value="information technology">Information Technology</option>
+                                    <option value="networking">Networking</option>
+                                    <option value="fashion">Fashion</option>
+                                    <option value="hardware">Hardware</option>
+                                    <option value="graphic design">Graphic Design</option>
+                                </select>
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control form-select" tabindex="1" name="job_type">
+                                    <option value="">--Job Type--</option> 
+                                    <option value="1">Full-time</option>
+                                    <option value="2">Part-time</option>
+                                    <option value="3">Internship</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" name="location" placeholder="Location" id="message-text1">  
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control form-select" tabindex="1" name="highest_qualification">
+                                    <option value="information technology">--Employment Type--</option> 
+                                    <option value="remote">Remote</option>
+                                    <option value="on_site">On site</option>
+                                    <option value="hybrid">Hybrid</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Budget" name="payment_budget" id="message-text1"> 
+                            </div> 
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <select class="form-control form-select" tabindex="1" name="highest_qualification">
+                                    <option value="information technology">--Years of Experience--</option> 
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option> 
+                                    <option value="4">4</option> 
+                                    <option value="5">5+</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control form-select" tabindex="1" name="highest_qualification">
+                            <option value="information technology">--Qualification--</option> 
+                            <option value="hnd">WASSCE</option>
+                            <option value="degree">HND</option>
+                            <option value="masters">Diploma</option> 
+                            <option value="wassce">Bachelors degree</option> 
+                            <option value="wassce">Masters degree</option> 
+                            <option value="wassce">Doctorate degree</option> 
+                        </select> 
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-control" id="message-text1" rows="3" placeholder="Job Description" name="desciption"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary text-white btnAddNew">Send message</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="modal ViewMyAppModal" id="ViewMyAppModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1"> </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped"> 
+                    <tbody>
+                        
+                        <tr>
+                            <td >Qualififaction</td> 
+                            <td class="quli"></td> 
+                        </tr> 
+                        <tr>
+                            <td>yrs of experience</td> 
+                            <td class="exprie"></td> 
+                        </tr> 
+                        <tr>
+                            <td>Payment Budget</td> 
+                            <td class="payment_budget"></td> 
+                        </tr> 
+                        <tr>
+                            <td>Location</td> 
+                            <td class="location"></td> 
+                        </tr> <tr>
+                            <td>Desciption</td> 
+                            <td  class="desciption"> </td> 
+                        </tr> <tr>
+                            <td>Created At</td> 
+                            <td class="created_at"></td> 
+                        </tr> 
+                    </tbody>
+                </table>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+    
+    <script src="{% static 'main/assets/node_modules/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'main/assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js' %}"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+    
+
+    <script src="{% static 'main/dist/js/pages/custom/employer/application/index.js' %}"></script>
+    {% comment %} <script src="{% static 'main/dist/js/pages/custom/employer_application.js' %}"></script> {% endcomment %}
+{% endblock scripts %}
+
+ 

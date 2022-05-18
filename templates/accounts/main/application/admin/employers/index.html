@@ -1,0 +1,144 @@
+{% extends 'accounts/main/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}</title>
+{% block content %}
+{% block styles %} 
+<link rel="stylesheet" type="text/css" href="{% static 'main/assets/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'main/assets/node_modules/datatables.net-bs4/css/responsive.dataTables.min.css' %}">{% endblock styles %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    {% include 'accounts/main/partials/bread_crumb.html' %}
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">   
+                    <h4 class="card-title">Data Export</h4>
+                    <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
+                    <div class="m-t-40 table-responsive" data-href="{% url 'application:get-employer-for-staff-table' %}">
+                        <table id="example23"  class="display nowrap table table-hover table-striped border"
+                        cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Person</th>
+                                <th>Related Field</th>
+                                <th>Position</th>
+                                <th>Years of experience</th>
+                                <th>Salary budget</th>
+                                <th>Status</th> 
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            {%for application in employer_job_applications %}
+                            <tr>
+                                <td><a href="{% url 'account:detail-profile' profile.id %}">{{profile.name }}</a></td>  
+                                <td>{{application.related_field}}</td>
+                                <td>{{application.position}}</td>
+                                <td>{{application.yrs_of_experience}}</td>
+                                <td>{{application.payment_budget}}</td>
+                                <td>
+                                    
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-success">{{application.get_status_display}}</button>
+                                        <button type="button" class="btn btn-success dropdown-toggle text-white dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="javascript:void(0)">Received</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Awaiting Placement</a>
+                                            <a class="dropdown-item" href="javascript:void(0)">Placed</a>
+                                            
+                                            <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Application Form</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post"  id="#formAddNew" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label class="form-label">Related field</label>
+                        <select class="form-control form-select" data-placeholder="Choose a Category" tabindex="1" name="related_field">
+                            <option value="information technology">Information Technology</option>
+                            <option value="networking">Networking</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="hardware">Hardware</option>
+                            <option value="graphic design">Graphic Design</option>
+                        </select>
+                    </div> 
+                    {% comment %} <div class="form-group">
+                        <label for="message-text" class="form-label">Job Title:</label>
+                        <input class="form-control" name="title" id="message-text1"> 
+                    </div> {% endcomment %}
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Position:</label>
+                        <input class="form-control" name="position" id="message-text1"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Highest Qualification:</label>
+                        <input class="form-control" name="highest_qualification" id="message-text1"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Year(s)of experience:</label>
+                        <input type="number" class="form-control" name="yrs_of_experience" id="message-text1"> 
+                    </div> 
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Location:</label>
+                        <input class="form-control" name="location" id="message-text1"> 
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Message:</label>
+                        <textarea class="form-control" id="message-text1"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="form-label">Cv:</label>
+                        <input class="form-control" name="cv" id="message-text1" type="file"> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary text-white btnAddNew">Send message</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+ 
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{% static 'main/assets/node_modules/datatables.net/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'main/assets/node_modules/datatables.net-bs4/js/dataTables.responsive.min.js' %}"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+    <!-- end - This is for export functionality only -->
+   
+    <script src="{% static 'main/dist/js/pages/custom/employer/application/index.js' %}"></script>
+{% endblock scripts %}

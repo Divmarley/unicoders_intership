@@ -1,0 +1,97 @@
+<table id="example23"  class="display nowrap table table-hover table-striped border"
+cellspacing="0" width="100%">
+<thead>
+    <tr>
+        <th>Job Position</th> 
+        <th>Related Fields</th>
+        <th>Job Type</th>
+        <th>Employment</th>
+        <th>Highest Qualification</th>
+        <th>Years of experience</th>
+        <th>Location</th>
+        <th>Expected Salary</th>
+        <th>File</th>
+    </tr>
+</thead> 
+<tbody id="tabledata">
+    {%for application in student_job_applications%}
+    <tr>
+        <td>{{application.position}}</td> 
+        <td>{{application.highest_qualification}}</td>
+        <td><button type="button" class="btn {{application.get_btn_color}}"><i class="fa fa-check"></i> {{application.get_status_display}}</button></td>
+        <td>{{application.location}}</td>
+        <td>{{application.location}}</td>
+        <td>{{application.location}}</td>
+        <td>{{application.location}}</td>
+        <td>{{application.location}}</td>
+        <td><a href="{% url 'application:delete-student-application' application.id %}" type="button" class="btn btn-danger btn_delete"><i class="fa fa-trash "></i></a></td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+
+<script>
+    $(function () { 
+        
+        // Order by the grouping
+        $('#example23 tbody').on('click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                table.order([2, 'desc']).draw();
+            } else {
+                table.order([2, 'asc']).draw();
+            }
+        });
+        // responsive table
+        $('#config-table').DataTable({
+            responsive: true
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary me-1');
+    });
+
+
+    $("#tabledata tbody").on('click', '.btn_delete', function(e){
+
+        e.preventDefault();
+        e.stopPropagation();
+        var $this = $(this);
+        swal({
+            title: "Sure to delete?",
+            text: "This action is irreversible",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonClass: "btn-danger btn-sm",
+            cancelButtonClass: "btn-sm",
+            confirmButtonText: "Yes, delete",
+            closeOnConfirm: true
+            },
+        function(){
+            $.ajax({
+                url: $this.attr('href'),
+                type: "GET",
+                dataType: "json",
+                success: function(response){
+                    if(response.message=='success'){
+                        $this.parents('.record').fadeOut('slow', function(){
+                            $this.parents('.record').remove();
+                        });
+                    }else{
+                        console.log("something went wrong");
+                    }
+                },
+                error: function(response){
+                    console.log('something wrong with request')
+                }
+            });
+        });
+        return false;
+    });
+    
+</script>

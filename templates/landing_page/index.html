@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="author" content="colorlib" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta charset="UTF-8" />
+
+    <title>OpenLabs | JobApp</title>
+
+    <link rel="shortcut icon" href="{% static 'landing_page/img/xfav.png.pagespeed.ic._1FLrq_mIM.webp' %}" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:900|Roboto:400,400i,500,700" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="{% static 'landing_page/js/OwlCarousel2-2.3.4/dist/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'landing_page/js/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'landing_page/css/style1.css' %}" />
+    <link rel="stylesheet" href="{% static 'landing_page/css/themify-icons/themify-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'landing_page/css/style2.css' %}" />
+  </head>
+
+  <body>
+
+    <header class="default-header">
+      <nav class="navbar navbar-expand-lg  navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'account:index' %}">
+            <h3 class="text-white">JobApp</h3>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="ti-menu"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+            <ul class="navbar-nav text-black">
+              <li><a href="{% url 'account:index' %}">Home</a></li>
+              <li><a href="{% url 'account:login' %}">Login</a></li>
+              <li><a href="{% url 'account:signup' %}">Sign up</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="home-banner-are text-black">
+      <svg xmlns="{% static 'landing_page/http://www.w3.org/2000/svg' %}" viewBox="0 0 1440 320"><path fill="#ff5500" fill-opacity="1" d="M0,320L12.6,320C25.3,320,51,320,76,309.3C101.1,299,126,277,152,272C176.8,267,202,277,227,256C252.6,235,278,181,303,176C328.4,171,354,213,379,224C404.2,235,429,213,455,197.3C480,181,505,171,531,160C555.8,149,581,139,606,154.7C631.6,171,657,213,682,197.3C707.4,181,733,107,758,90.7C783.2,75,808,117,834,160C858.9,203,884,245,909,261.3C934.7,277,960,267,985,272C1010.5,277,1036,299,1061,288C1086.3,277,1112,235,1137,213.3C1162.1,192,1187,192,1213,186.7C1237.9,181,1263,171,1288,170.7C1313.7,171,1339,181,1364,186.7C1389.5,192,1415,192,1427,192L1440,192L1440,0L1427.4,0C1414.7,0,1389,0,1364,0C1338.9,0,1314,0,1288,0C1263.2,0,1238,0,1213,0C1187.4,0,1162,0,1137,0C1111.6,0,1086,0,1061,0C1035.8,0,1011,0,985,0C960,0,935,0,909,0C884.2,0,859,0,834,0C808.4,0,783,0,758,0C732.6,0,707,0,682,0C656.8,0,632,0,606,0C581.1,0,556,0,531,0C505.3,0,480,0,455,0C429.5,0,404,0,379,0C353.7,0,328,0,303,0C277.9,0,253,0,227,0C202.1,0,177,0,152,0C126.3,0,101,0,76,0C50.5,0,25,0,13,0L0,0Z"></path></svg>
+
+      <div class="container">
+        <div class="row justify-content-center fullscreen align-items-center">
+          <div class="col-lg-5 col-md-8 home-banner-left">
+            <h1 class="text-orange">
+            Take the first step <br />
+            to get a job
+              </h1>
+            <p class="mx-auto text-black pb=5">
+            Welcome to OpenLabs JobApp, 
+            </p>
+          </div>
+          <div class="offset-lg-2 col-lg-5 col-md-12 home-banner-right">
+            <img class="img-fluid" src="{% static 'landing_page/img/header.png' %}" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-area" style="padding-top: 80px">
+      <div class="container-fluid">
+        <div class="feature-inner row">
+          <div class="col-lg-2 col-md-6">
+            <div class="feature-item d-flex">
+              <i class="ti-cup"></i>
+              <div class="ml-20">
+                <h4>Full-time</h4>
+                <p>Register to get a full-time job to suite you abilities and provide the opportunity for growth.</p>
+              </div>
+            </div>
+          </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="feature-item d-flex">
+            <i class="ti-book"></i>
+            <div class="ml-20">
+              <h4>Part-time</h4>
+              <p>Apply for the most flexible part-time jobs in tech and other related jobs. </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <div class="feature-item d-flex border-right-0">
+            <i class="ti-time"></i>
+            <div class="ml-20">
+              <h4>Internship</h4>
+              <p>Register with us and you are guaranteed to be connected the best tech companies offering internships.</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="other-feature-area">
+      <div class="container">
+        <div class="feature-inner row">
+          <div class="col-lg-12">
+            <div class="section-title text-left">
+              <h2>Features That <br />Come With Our App</h2>
+              <p>
+              OpenLabs JobApp has other useful features that 
+              enhance the experience of our users aside finding suitable 
+              jobs and employees.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="other-feature-item">
+              <i class="ti-themify-favicon"></i>
+              <h4>Communities & Forums</h4>
+              <div>
+                <p>
+                The JobApp brings users together by providing 
+                a platform for communities with similar interests 
+                and forums for online meetings and also a feature 
+                for direct messages
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt--160">
+            <div class="other-feature-item">
+              <i class="ti-clipboard"></i>
+              <h4>Event Planning</h4>
+              <div>
+                <p>
+                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
+                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
+                amet consec tetur adipisicing elit, sed do eiusmod tempor
+                incididunt labore.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt--260">
+            <div class="other-feature-item">
+              <i class="ti-agenda"></i>
+              <h4>Activity Log</h4>
+              <div>
+                <p>
+                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
+                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
+                amet consec tetur adipisicing elit, sed do eiusmod tempor
+                incididunt labore.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-4 col-md-6">
+            <div class="other-feature-item">
+              <i class="ti-briefcase"></i>
+              <h4>35000+ Courses</h4>
+              <div>
+                <p>
+                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
+                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
+                amet consec tetur adipisicing elit, sed do eiusmod tempor
+                incididunt labore.
+                </p>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="col-lg-4 col-md-6 mt--160">
+            <div class="other-feature-item">
+              <i class="ti-crown"></i>
+              <h4>Expert Mentors</h4>
+              <div>
+                <p>
+                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
+                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
+                amet consec tetur adipisicing elit, sed do eiusmod tempor
+                incididunt labore.
+                </p>
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="col-lg-4 col-md-6 mt--260">
+            <div class="other-feature-item">
+              <i class="ti-headphone-alt"></i>
+              <h4>Live Supports</h4>
+              <div>
+                <p>
+                Lorem ipsum dolor sit amet consec tetur adipisicing elit, sed
+                do eiusmod tempor incididunt labore. Lorem ipsum dolor sit
+                amet consec tetur adipisicing elit, sed do eiusmod tempor
+                incididunt labore.
+                </p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials-area section-gap">
+      <div class="container">
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+              <div class="row align-items-center">
+                <div class="col-lg-5">
+                <div class="item">
+                <div class="testi-item">
+                  <img src="{% static 'landing_page/img/xquote' %}.pagespeed.ic.8Vqj_9Oh2O.webp' %}" style="width: 30px;" />
+                <div class="mt-40 text">
+                <p>
+                As conscious traveling Paup ers we must always be oncerned
+                about our dear Mother Earth. If you think about it, you
+                travel across her face and She is the host to your
+                journey.
+                </p>
+                <img src="{% static 'landing_page/img/xquote.png.pagespeed.ic.8Vqj_9Oh2O.webp' %}" style="width: 30px; float:right" />
+                </div>
+                <h4>Fanny Spencer</h4>
+                <p>Chief Executive, Amazon</p>
+                </div>
+                </div>
+                </div>
+                <div class="offset-lg-1 col-lg-6">
+                  <img src="{% static 'landing_page/img/testimonial/xt1.jpg.pagespeed.ic.OBM91xccGO.webp' %}" alt="" />
+                </div>
+              </div>
+            </div>
+          <div class="item">
+            <div class="row align-items-center">
+              <div class="col-lg-5">
+              <div class="item">
+              <div class="testi-item">
+              <img src="{% static 'landing_page/img/xquote.png.pagespeed.ic.8Vqj_9Oh2O.webp' %}" style="width: 30px;" />
+              <div class="mt-40 text">
+              <p>
+              As conscious traveling Paup ers we must always be oncerned
+              about our dear Mother Earth. If you think about it, you
+              travel across her face and She is the host to your
+              journey.
+              </p>
+              <img src="{% static 'landing_page/img/xquote.png.pagespeed.ic.8Vqj_9Oh2O.webp' %}" style="width: 30px; float:right" />
+              </div>
+              <h4>Fanny Spencer</h4>
+              <p>Chief Executive, Amazon</p>
+              </div>
+              </div>
+              </div>
+              <div class="offset-lg-1 col-lg-6">
+              <img src="{% static 'landing_page/img/testimonial/xt1.jpg.pagespeed.ic.OBM91xccGO.webp' %}" alt="" />
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog-post-area section-gap">
+      <div class="container-fluid">
+        <div class="feature-inner row">
+          <div class="col-lg-12">
+            <div class="section-title text-left">
+              <h2>Event Catalog</h2>
+              <p>
+              Keep up with our events that are coming your way.
+              You will be notified when events are close
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="single-blog-post">
+              <img src="{% static 'landing_page/img/blog-post/xb1.jpg.pagespeed.ic.ADzeRjpk97.webp' %}" class="img-fluid" alt="" />
+              <div class="overlay"></div>
+              <div class="top-text">
+                <p>29th, oct, 2018</p>
+                <p>121 likes</p>
+                <p>05 comments</p>
+              </div>
+              <div class="text">
+                <h4 class="text-white">Smart Kitchen Setup</h4>
+                <div>
+                  <p>
+                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                  sed do.
+                  </p>
+                </div>
+                <a href="#" class="primary-btn">
+                  View Details
+                  <i class="ti ti-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt--160">
+            <div class="single-blog-post">
+              <img src="{% static 'landing_page/img/blog-post/xb2.jpg.pagespeed.ic.1WzaYvtfUL.webp' %}" class="img-fluid" alt="" />
+              <div class="overlay"></div>
+              <div class="top-text">
+                <p>29th, oct, 2018</p>
+                <p>121 likes</p>
+                <p>05 comments</p>
+              </div>
+              <div class="text">
+                <h4 class="text-white">Smart Kitchen Setup</h4>
+                <div>
+                  <p>
+                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                  sed do.
+                  </p>
+                </div>
+                <a href="#" class="primary-btn">
+                  View Details
+                  <i class="ti ti-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mt--260">
+            <div class="single-blog-post">
+              <img src="{% static 'landing_page/img/blog-post/xb3.jpg.pagespeed.ic.vxylzOTNxI.webp' %}" class="img-fluid" alt="" />
+              <div class="overlay"></div>
+              <div class="top-text">
+                <p>29th, oct, 2018</p>
+                <p>121 likes</p>
+                <p>05 comments</p>
+              </div>
+              <div class="text">
+                <h4 class="text-white">Smart Kitchen Setup</h4>
+                <div>
+                  <p>
+                  Lorem ipsum dolor sit amet consec tetur adipisicing elit,
+                  sed do.
+                  </p>
+                </div>
+                <a href="#" class="primary-btn">
+                  View Details
+                  <i class="ti ti-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-area section-gap">
+      <div class="container ">
+        <div class="row mt-5">
+          <div class="col-lg-2 col-md-6 single-footer-widget ">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contacts</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Jobs</h4>
+            <ul>
+              <li><a href="#">Full-time</a></li>
+              <li><a href="#">Part-time</a></li>
+              <li><a href="#">Internship</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-md-6 single-footer-widget">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Activities</a></li>
+              <li><a href="#">Events</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Forums</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-6 single-footer-widget">
+            <h4>Newsletter</h4>
+            <p>Subscribe to receive timely feedbacks, events and news</p>
+            <div class="form-wrap" id="mc_embed_signup">
+              <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" class="form-inline">
+                <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" required type="email">
+                <button class="click-btn btn btn-default text-uppercase">subscribe</button>
+                <div style="position: absolute; left: -5000px;">
+                  <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                </div>
+                <div class="info"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom row align-items-center">
+          <div class="col-lg-4 col-md-12 footer-social">
+            <a href="#"><i class="ti ti-facebook"></i></a>
+            <a href="#"><i class="ti ti-twitter"></i></a>
+            <a href="#"><i class="ti ti-linkedin"></i></a>
+            <a href="#"><i class="ti ti-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <p style="text-align: center">Made by Unicoders  <i class="ti-face-smile"></i></p>
+    </footer>
+
+    <script src="{% static 'landing_page/js/vendor/jquery-2.2.4.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/boot.js' %}"></script><script>eval(mod_pagespeed_ufuz5PjQPA);</script>
+    <script src="{% static 'landing_page/js/OwlCarousel2-2.3.4/dist/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'landing_page/js/owl.js' %}"></script>
+
+  </body>
+  
+</html>

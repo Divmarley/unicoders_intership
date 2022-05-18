@@ -1,0 +1,71 @@
+{% extends 'accounts/main/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}</title>
+{% block styles %}
+
+<link href="{% static 'main/assets/node_modules/calendar/dist/fullcalendar.css' %}" rel="stylesheet" />
+<!-- Timeline CSS -->
+<link href="{% static 'main/assets/node_modules/horizontal-timeline/css/horizontal-timeline.css' %}" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="{% static 'main/dist/css/style.min.css' %}" rel="stylesheet">
+<!-- page css -->
+<link href="{% static 'main/dist/css/pages/timeline-vertical-horizontal.css' %}" rel="stylesheet">
+{% endblock styles %}
+{% block content %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    {% include 'accounts/main/partials/bread_crumb.html' %}
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="col-md-12 col-lg-12">
+        <div class="row">
+            {% for community in community_list %}
+            <div class="col-md-6 col-lg-3">
+                <img class="img-responsive" alt="user" src="{% static 'main/dist/images/big/c2.jpg' %}">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{community.name|upper}}</h5>
+                        
+                        <div class="d-flex no-block align-items-center">
+                            <span><i class="ti-alarm-clock"></i> {{community.created_at}}</span>
+                        </div>
+                        <div class="d-flex no-block align-items-center p-t-10">
+                            <span><i class="ti-user"></i>{{community.created_by.name }}</span>
+                        </div>
+                        <div class="d-flex no-block align-items-center p-t-10">
+                            <span><i class="fa fa-graduation-cap"></i> Students: 200+</span></span>
+                        </div>
+                        <a href="{% url 'community:detail' community.slug %}" class="btn btn-success btn-rounded text-white waves-effect waves-light m-t-30"> Details</a>
+                    </div>
+                </div>
+            </div> 
+            {% endfor %}
+            
+        </div>
+        <!-- row --> 
+         
+    </div>
+     
+    <!-- END MODAL -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar --> 
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+{% endblock content %}
+
+{% block scripts %}
+     
+{% endblock scripts %}

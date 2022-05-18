@@ -1,0 +1,60 @@
+<table id="example23"  class="display nowrap table table-hover table-striped border"
+cellspacing="0" width="100%">
+<thead>
+    <tr>
+        <th>Person</th>
+        <th>CV</th>  
+        <th>Status</th>
+    </tr>
+</thead> 
+<tbody>
+    {%for application in applications%}
+    <tr>
+        <td><a href="{% url 'account:detail-profile' profile.id %}">{{profile.name}}</a></td> 
+        <td><a href="{{application.cv.url }}" >{{ application.cv }}</a></td>
+        <td>
+            
+            <div class="btn-group">
+                <button type="button" class="btn btn-success">{{application.get_status_display}}</button>
+                <button type="button" class="btn btn-success dropdown-toggle text-white dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="javascript:void(0)">Received</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Awaiting Placement</a>
+                    <a class="dropdown-item" href="javascript:void(0)">Placed</a>
+                    
+                    <a class="dropdown-item" href="javascript:void(0)">Separated link</a>
+                </div>
+            </div>
+        </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+<script>
+    $(function () { 
+        
+        // Order by the grouping
+        $('#example23 tbody').on('click', 'tr.group', function () {
+            var currentOrder = table.order()[0];
+            if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                table.order([2, 'desc']).draw();
+            } else {
+                table.order([2, 'asc']).draw();
+            }
+        });
+        // responsive table
+        $('#config-table').DataTable({
+            responsive: true
+        });
+        $('#example23').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+        $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary me-1');
+    });
+
+</script>

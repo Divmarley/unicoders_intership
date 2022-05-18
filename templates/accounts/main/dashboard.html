@@ -1,0 +1,232 @@
+{% extends 'accounts/main/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}</title>
+{% block content %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    {% include 'accounts/main/partials/bread_crumb.html' %}
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Info box -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    <div class="row">
+        {% if request.user.account_type == 1 %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Users</h5>
+                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-success"></i></sup> {{ users }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Student Applications</h5>
+                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
+                        
+                    </div> 
+                    <h2><sup><i class="ti-arrow-down text-primary"></i></sup> {{ student_application }}</h2>
+                </div>
+            </div>
+        </div>
+        {% if request.user.account_type == 1 %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Employer Applications</h5>
+                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-info"></i></sup> {{ employer_application }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Communities</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- End Info box -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Over Visitor, Our income , slaes different and  sales prediction -->
+    <!-- ============================================================== -->
+    <!-- .row -->
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <h5 class="card-title text-uppercase">University Earnings<br><small class="text-muted">All Earnings are in million $</small></h5>
+                        <div class="ms-auto">
+                            <ul class="list-inline font-12">
+                                <li><i class="fa fa-circle text-dark"></i> Arts</li>
+                                <li><i class="fa fa-circle text-info"></i> Commerse</li>
+                                <li><i class="fa fa-circle text-success"></i> Science</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="morris-bar-chart" style="height:375px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card m-b-15">
+                        <div class="card-body">
+                            <h5 class="card-title text-uppercase">Earning From Medical college</h5>
+                            <div class="row">
+                                <div class="col-6 m-t-30">
+                                    <h1 class="text-info">$64057</h1>
+                                    <p class="text-muted">APRIL 2017</p> <b>(150 Sales)</b> </div>
+                                <div class="col-6">
+                                    <div id="sparkline2dash" class="text-end"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card bg-info m-b-15">
+                        <div class="card-body">
+                            <h5 class="text-white card-title text-uppercase">Earning From Engineering college</h5>
+                            <div class="row">
+                                <div class="col-6 m-t-30">
+                                    <h1 class="text-white">$30447</h1>
+                                    <p class="text-white">APRIL 2017</p> <b class="text-white">(110 Sales)</b> </div>
+                                <div class="col-md-6 col-sm-6 col-6">
+                                    <div id="sales1" class="text-end"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- Comment - table -->
+    <!-- ============================================================== -->
+    <!-- row -->
+    <div class="row">
+        {% for top in top_community %}
+        <div class="col-md-6 col-lg-3">
+            <img class="img-responsive" alt="user" src="{% static 'main/dist/images/big/c2.jpg' %}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{top.name}}</h5>
+                    <div class="m-b-30">
+                        <a class="link list-icons" href="#">
+                            <i class="ti-alarm-clock"></i> 2 Year
+                        </a>
+                        <a class="link list-icons m-l-10 m-r-10" href="#">
+                            <i class="fa fa-heart-o"></i> 38
+                        </a>
+                        <a class="link list-icons m-l-10 m-r-10" href="#">
+                            <i class="fa fa-usd"></i> 50
+                        </a>
+                    </div>
+                    <p>
+                        <span><i class="ti-alarm-clock"></i> Duration: 6 Months</span>
+                    </p>
+                    <p>
+                        <span><i class="ti-user"></i> Professor: Jane Doe</span>
+                    </p>
+                    <p>
+                        <span><i class="fa fa-graduation-cap"></i> Students: 200+</span></span>
+                    </p>
+                    <button class="btn btn-success text-white btn-rounded waves-effect waves-light m-t-10">More Details</button>
+                </div>
+            </div>
+        </div> 
+        {% endfor %}
+    </div>
+    <!-- row -->
+    <!-- ============================================================== -->
+    <!-- End Comment - chats -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimscrollright">
+            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                    <li><b>With Light sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme">1</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme working">4</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
+                    <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
+                </ul>
+                <ul class="m-t-20 chatonline">
+                    <li><b>Chat option</b></li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/1.jpg' %}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/2.jpg' %}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/3.jpg' %}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/4.jpg' %}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/5.jpg' %}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/6.jpg' %}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/7.jpg' %}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{% static 'main/assets/images/users/8.jpg' %}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div> 
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'main/dist/js/dashboard1.js' %}"></script> 
+{% endblock scripts %}
