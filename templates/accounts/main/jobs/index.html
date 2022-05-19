@@ -26,28 +26,30 @@
     <!-- ============================================================== -->
     <div class="row">
         <!-- .col -->
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12 text-center">
-                            <a href="contact-detail.html"><img src="{% static 'main/dist/images/users/9.jpg' %}" alt="user" class="img-circle img-responsive" style="max-height: 210px;"></a>
-                        </div>
-                        <div class="col-md-8">
-                            <h5 class="card-title m-b-0">Johnathan Doe</h5> <small>HOD</small>
-                            <p>
-                                <address>
-                                    795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
-                                    <br/>
-                                    <br/>
-                                    <abbr title="Phone">P:</abbr> (123) 456-7890
-                                </address>
-                            </p>
+        {% for job in jobs %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 text-center">
+                                <a href="contact-detail.html"><img src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}" alt="user" class="img-circle img-responsive" style="max-height: 210px;"></a>
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="card-title m-b-0">{{ job.title }}</h5> <small>{{job.related_field}}</small>
+                                <p>
+                                    <address>
+                                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
+                                        <br/>
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                                    </address>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
         <!-- /.col -->
        
     </div>

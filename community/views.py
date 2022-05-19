@@ -1,13 +1,16 @@
+from email.mime import image
 from django.http import Http404, JsonResponse
-from django.shortcuts import render
-from django.views.generic import CreateView
+from django.shortcuts import render 
 from django.views import View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from accounts.models import UserProfile
-from .forms import CommunityForm, PostForm
+from .forms import CommunityForm, EditCommounityProfileForm, PostForm
 from .models import Community, CommunityFollower, Post, PostComment
 
-class CommounityView(View):
+class CommounityView(LoginRequiredMixin,View):
+    login_url = "account:login"
+    redirect_field_name = "redirect_to"
     form_class = CommunityForm
     def get(self,request):
         template_name='accounts/main/community/index.html'
@@ -22,18 +25,49 @@ class CommounityView(View):
         return render(request,template_name,context)
 
     def post(self,request):
+        message = ""
         if request.user.user_type != 'Admin' or request.user.user_type != 'Staff':
             raise Http404({"message":"Unauthorized"})
             # return JsonResponse({"message":"Unauthorized"})
             
-        is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
-        if is_ajax:
-            form = self.form_class(request.POST)
-            if form.is_valid():
-                form.instance.created_by=request.user
-                form.save()
-                return JsonResponse({"message":"success"})
-            return JsonResponse({"message":form.errors})
+        # is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+        # if is_ajax:
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.instance.created_by=request.user
+            form.save()
+            message = "success"
+            return JsonResponse({"message":message})
+        message = form.errors
+        return JsonResponse({"message":message})
+
+class EditCommounityProfile(LoginRequiredMixin,View):
+    login_url = "account:login"
+    redirect_field_name = "redirect_to"
+    form_class = EditCommounityProfileForm
+
+    def post(self, request, id, *args, **kwargs):
+        message = "" 
+        community = Community.objects.get(id=id)
+        data = {"name": community.name}
+        form = self.form_class(request.POST, initial=data)
+        if form.is_valid(): 
+            change_community = form.save(commit=False)
+            name = form.cleaned_data['name']
+            image = form.cleaned_data['image']
+
+            if form.has_changed():
+                community.name = name
+                community.image = image
+                community.save() 
+                message = "success"
+                return JsonResponse({"message": message})
+            else:
+                message = form.errors
+            return JsonResponse({"message": message})
+        else:
+            message = form.errors 
+            return JsonResponse({"message":message})
 
 class CommounityDetailView(View):
     def get(self,request, *args, slug, **kwargs):

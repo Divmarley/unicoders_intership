@@ -12,15 +12,16 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 class JobListView(LoginRequiredMixin,View):
     login_url = "account:login"
-    redirect_field_name = "redirect_to"
-    # form_class = AdminJobApplicationForm
+    redirect_field_name = "redirect_to" 
     template_name = 'accounts/main/jobs/index.html'
     
     def get(self,request):
         profile = UserProfile.objects.get(user_id=request.user.id)    
+        job = EmployerApplication.objects.all()
         context = {
             "title":"Jobs",
             "profile":profile , 
+            "jobs":job
             }
         return render(request, self.template_name, context)
     

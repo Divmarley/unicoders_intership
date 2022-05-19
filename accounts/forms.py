@@ -1,7 +1,7 @@
 from dataclasses import field
 from django import forms
 from django.contrib.auth import authenticate
-from accounts.models import Message, SocialMediaLink, User, UserImage, UserProfile
+from accounts.models import Message, SkillSet, SocialMediaLink, User, UserImage, UserProfile
 from django.contrib.auth.forms import PasswordChangeForm
 
 class CreateAccountForm(forms.ModelForm):
@@ -57,6 +57,10 @@ class CreateSocialMediaLinkViewForm(forms.ModelForm):
         model = SocialMediaLink
         fields = ['social_media_field','link'] 
 
+class CreateSkillForm(forms.ModelForm):
+    class Meta:
+        model = SkillSet
+        fields = ['name','rating'] 
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message

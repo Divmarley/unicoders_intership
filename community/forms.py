@@ -8,6 +8,11 @@ class CommunityForm(ModelForm):
         model = Community
         fields = ['name']
 
+class EditCommounityProfileForm(ModelForm):
+    class Meta:
+        model = Community
+        fields = ['name','image']
+
 class PostForm(ModelForm):
     class Meta:
         model = Post

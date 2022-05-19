@@ -45,7 +45,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
             </div>
             <div class="modal-body">
-                <form action="" method="post" id="formAddNew" enctype="multipart/form-data">
+                <form action="{% url 'student:job-application' %}" method="post" id="formAddNew" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                         <input class="form-control" placeholder="Job Title" name="title" id="message-text1"> 
@@ -125,8 +125,8 @@
                         </select> 
                     </div>
                     <div class="form-group">
-                        <label for="message-text" class="form-label">Cv:</label>
-                        <input class="form-control" name="cv" id="message-text1" type="file"> 
+                        <label for="message-text" class="form-label">Cv:</label> 
+                        <input class="form-control"  name="cv" type="file"  required>
                     </div>
 
                     <div class="form-group">
@@ -143,11 +143,11 @@
     </div>
 </div>
 
-<div class="modal ViewMyAppModal" id="ViewMyAppModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" >
+<div class="modal ViewMyAppModal" id="ViewMyAppModal" tabindex="-1" role="dialog" aria-labelledby="ViewMyAppModalLabel1" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel1"> </h4>
+                <h4 class="modal-title" id="ViewMyAppModalLabel1"> </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
             </div>
             <div class="modal-body">

@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile-edit/<int:id>', ProfleUpdateView.as_view(),name ='profile-edit'),
     path('profile/change-password', ChangePasswordView.as_view(), name="change-password"),
     path('create-social-link', CreateSocialMediaLinkView.as_view(), name='create-social-link'),
+    path('create-skill', CreateSkillView.as_view(), name='create-skill'),
     path('profile/<int:id>/change-profile-image', CreateProfileImgae.as_view(), name="change-profile-image"),
     path('message/', UserMessage.as_view(), name="messages"),
 
