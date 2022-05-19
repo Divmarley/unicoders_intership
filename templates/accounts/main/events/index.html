@@ -109,7 +109,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form role="form" action="{% url 'event:index' %}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{% url 'event:calender' %}" method="post" enctype="multipart/form-data">
                         {% comment %} {{form}} {% endcomment %}
                         {% csrf_token %}
                         <div class="row">
