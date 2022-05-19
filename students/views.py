@@ -17,7 +17,7 @@ class StudentJobApplicationView(LoginRequiredMixin,View):
     template_name = 'accounts/main/student/application/index.html'
     
     def get(self,request): 
-        profile = UserProfile.objects.get(user_id=request.user.id)  
+        profile = UserProfile.objects.get(user_id=request.user.id)
         notifications = Notification.objects.filter(notification_type=1, is_read=False, to_user=request.user)
 
         context = {
@@ -31,13 +31,10 @@ class StudentJobApplicationView(LoginRequiredMixin,View):
     def post(self,request): 
         profile = UserProfile.objects.get(user_id=request.user.id)  
         form = self.form_class(request.POST, request.FILES)
-        
         if form.is_valid(): 
-            branch = form.save(commit = False) 
             form.instance.user=profile
-            form.instance.status=1  
-            print(branch)
-            # branch.save()
+            form.instance.status=1 
+            form.save()
             content = f"An application has been received from {request.user.email}"
             create_notification(request=request, notification_type=2, content=content)
             message = "success"
@@ -45,7 +42,7 @@ class StudentJobApplicationView(LoginRequiredMixin,View):
         else:
             print(form.errors)
             message = form.errors
-            return JsonResponse({"message":message})  
+            return JsonResponse({"message":message})
 
 class StudentJobApplicationTableView(LoginRequiredMixin,View):
     login_url = "accounts:login"
@@ -96,5 +93,3 @@ class ChangeStudentApplicationStatus(LoginRequiredMixin,View):
                 return redirect(reverse_lazy("staff:student-jp-index"))
 
         except UserProfile.DoesNotExist: pass
-       
-

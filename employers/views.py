@@ -1,4 +1,3 @@
- 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
@@ -19,7 +18,7 @@ class EmployerJobApplicationView(LoginRequiredMixin,View):
     template_name = 'accounts/main/employers/application/index.html'
     
     def get(self,request): 
-        profile = UserProfile.objects.get(user_id=request.user.id)  
+        profile = UserProfile.objects.get(user_id=request.user.id)
         notifications = Notification.objects.filter(notification_type=1, is_read=False, to_user=request.user)
 
         context = {
