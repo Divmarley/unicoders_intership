@@ -152,7 +152,7 @@
                   <a href="javascript:void(0)">
                     <div class="user-img">
                       <img
-                        src="{{ profile.image.url }}"
+                        src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}"
                         alt="user" 
                         class="img-circle"
                       />
@@ -473,7 +473,7 @@
             data-bs-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
-            ><img src="{{ profile.image.url }}" alt="user" class="" />
+            ><img src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}" alt="user" class="" />
             <span class="hidden-md-down"
               >{{ user.username }} &nbsp;<i class="fa fa-angle-down"></i
             ></span>

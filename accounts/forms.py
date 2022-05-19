@@ -2,6 +2,7 @@ from dataclasses import field
 from django import forms
 from django.contrib.auth import authenticate
 from accounts.models import Message, SocialMediaLink, User, UserImage, UserProfile
+from django.contrib.auth.forms import PasswordChangeForm
 
 class CreateAccountForm(forms.ModelForm):
     class Meta:

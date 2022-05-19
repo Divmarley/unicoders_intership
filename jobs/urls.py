@@ -1,21 +1,8 @@
+from django.urls import path
+from .views import *
 
-    # admin
-# admin list student job
-# admin list employers job
-# admin student  job apply
-# admin employers  job apply 
+app_name = 'job'
 
-
-    # student
-# student jobs
-# student apply job
-# student edit apply job
-# student delete apply job
-
-    # employers
-# student jobs
-# student apply job
-# student edit apply job
-# student delete apply job
-
-
+urlpatterns = [ 
+    path('',JobListView.as_view(),name="index")
+ ]

@@ -11,7 +11,7 @@
             href="javascript:void(0)"
             aria-expanded="false"
             ><img
-              src="{{ profile.image.url }}"
+              src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}"
               alt="user-img"
               class="img-circle"
             /><span class="hide-menu">{{ profile.name }}</span></a
@@ -22,11 +22,13 @@
                 ><i class="ti-user"></i> My Profile</a
               >
             </li>
-            {% comment %} <li>
+            {% comment %}
+            <li>
               <a href="javascript:void(0)"
                 ><i class="ti-wallet"></i> My Balance</a
               >
-            </li> {% endcomment %}
+            </li>
+            {% endcomment %}
             <li>
               <a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a>
             </li>
@@ -42,7 +44,9 @@
             </li>
           </ul>
         </li>
-        {% comment %} <li class="nav-small-cap"></li> {% endcomment %}
+        {% comment %}
+        <li class="nav-small-cap"></li>
+        {% endcomment %}
         <li>
           <a
             class="waves-effect waves-dark"
@@ -59,18 +63,30 @@
             ><i class="ti-receipt"></i
             ><span class="hide-menu">Applications</span></a
           >
-          <ul aria-expanded="false" class="collapse"> 
-            {% if  profile.user.account_type == 2 %}
-            <li><a href="{% url 'student:job-application' %}">My Applications</a></li>
-            {% elif  profile.user.account_type == 3 %}
-            <li><a href="{% url 'employers:employer-job-application' %}">My Applications</a></li> 
-            {% elif  profile.user.account_type == 1 %}
-            <li><a href="{% url 'staff:student-jp-index' %}">Student Applications</a></li> 
-            <li><a href="{% url 'staff:employer-jp-index' %}">Employer Applications</a></li> 
+          <ul aria-expanded="false" class="collapse">
+            {% if profile.user.account_type == 2 %}
+            <li>
+              <a href="{% url 'student:job-application' %}">My Applications</a>
+            </li>
+            {% elif profile.user.account_type == 3 %}
+            <li>
+              <a href="{% url 'employers:employer-job-application' %}"
+                >My Applications</a
+              >
+            </li>
+            {% elif profile.user.account_type == 1 %}
+            <li>
+              <a href="{% url 'staff:student-jp-index' %}"
+                >Student Applications</a
+              >
+            </li>
+            <li>
+              <a href="{% url 'staff:employer-jp-index' %}"
+                >Employer Applications</a
+              >
+            </li>
             {% endif %}
-          </ul> 
-
-          
+          </ul>
         </li>
         <li>
           <a
@@ -79,8 +95,17 @@
             aria-expanded="false"
             ><i class="ti-email"></i><span class="hide-menu">Messages</span></a
           >
-        </li> 
-        {% comment %} <li>
+        </li>
+        <li>
+          <a
+            class="waves-effect waves-dark"
+            href="{% url 'account:messages' %}"
+            aria-expanded="false"
+            ><i class="ti-email"></i><span class="hide-menu">Jobs</span></a
+          >
+        </li>
+        {% comment %}
+        <li>
           <a
             class="has-arrow waves-effect waves-dark"
             href="javascript:void(0)"
@@ -91,15 +116,23 @@
             <li><a href="app-email.html">Messages</a></li>
             <li><a href="app-compose.html">Compose Message</a></li>
           </ul>
-        </li> {% endcomment %}
-        {% comment %} <li class="nav-small-cap">--- PROFESSIONAL</li> {% endcomment %}
+        </li>
+        {% endcomment %} {% comment %}
+        <li class="nav-small-cap">--- PROFESSIONAL</li>
+        {% endcomment %}
         <li>
           <a class="waves-effect waves-dark" href="{% url 'event:index' %}">
-            <i class="ti-calendar"></i><span class="hide-menu">Event</span></a>
-        </li> 
-        <li><a href="{% url 'community:index' %}"><i class="ti-user"></i><span class="hide-menu">Community</span></a></li>
-          
-        {% comment %} <li>
+            <i class="ti-calendar"></i><span class="hide-menu">Event</span></a
+          >
+        </li>
+        <li>
+          <a href="{% url 'community:index' %}"
+            ><i class="ti-user"></i><span class="hide-menu">Community</span></a
+          >
+        </li>
+
+        {% comment %}
+        <li>
           <a
             class="has-arrow waves-effect waves-dark"
             href="javascript:void(0)"
@@ -173,8 +206,9 @@
             <li><a href="university-income-report.html">Income Report</a></li>
             <li><a href="university-expense-report.html">Expense Report</a></li>
           </ul>
-        </li> {% endcomment %}
-        {% comment %} <li class="nav-small-cap">--- FORMS, TABLE &amp; WIDGETS</li>
+        </li>
+        {% endcomment %} {% comment %}
+        <li class="nav-small-cap">--- FORMS, TABLE &amp; WIDGETS</li>
         <li>
           <a
             class="has-arrow waves-effect waves-dark"
@@ -241,8 +275,9 @@
             <li><a href="widget-apps.html">Apps Widgets</a></li>
             <li><a href="widget-charts.html">Charts Widgets</a></li>
           </ul>
-        </li> {% endcomment %}
-        {% comment %} <li class="nav-small-cap">--- EXTRA COMPONENTS</li>
+        </li>
+        {% endcomment %} {% comment %}
+        <li class="nav-small-cap">--- EXTRA COMPONENTS</li>
         <li>
           <a
             class="has-arrow waves-effect waves-dark"
@@ -406,15 +441,18 @@
             </li>
             <li><a href="javascript:void(0)">item 1.4</a></li>
           </ul>
-        </li> {% endcomment %}
-        {% comment %} <li class="nav-small-cap">--- SUPPORT</li> {% endcomment %}
-        {% comment %} <li>
+        </li>
+        {% endcomment %} {% comment %}
+        <li class="nav-small-cap">--- SUPPORT</li>
+        {% endcomment %} {% comment %}
+        <li>
           <a class="waves-effect waves-dark" href="" aria-expanded="false"
             ><i class="far fa-circle text-danger"></i
             ><span class="hide-menu">Documentation</span></a
           >
-        </li> {% endcomment %}
-        {% comment %} <li>
+        </li>
+        {% endcomment %} {% comment %}
+        <li>
           <a
             class="waves-effect waves-dark"
             href="pages-login.html"
@@ -422,7 +460,8 @@
             ><i class="far fa-circle text-success"></i
             ><span class="hide-menu">Log Out</span></a
           >
-        </li> {% endcomment %}
+        </li>
+        {% endcomment %}
         <li>
           <a
             class="waves-effect waves-dark"

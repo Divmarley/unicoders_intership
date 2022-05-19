@@ -19,7 +19,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img src="{{profile.image.url }}" class="img-circle" width="150" height="150"/> 
+                                <center class="m-t-30"> <img src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}" class="img-circle" width="150" height="150"/> 
                                     <div class="text-center" style="margin-left: 4rem; color: rgb(190, 130, 16); cursor:pointer"> 
                                         <span onclick="getFile();">
                                             <i class="fa fa-camera">
@@ -96,6 +96,7 @@
                                 <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">Timeline</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">Profile</a> </li>
                                 <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab">Settings</a> </li>
+                                <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#changepassword" role="tab">Change Password</a> </li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -264,6 +265,15 @@
                                                     <button id="btn">Trial</button>
                                                 </div>
                                             </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="changepassword" role="tabpanel">
+                                    <div class="card-body">
+                                        <form class="form-horizontal form-material" method="post"  id="formChangePassword" action="{% url 'account:change-password' %}">
+                                            {%csrf_token%}
+                                           
+                                            
                                         </form>
                                     </div>
                                 </div>
