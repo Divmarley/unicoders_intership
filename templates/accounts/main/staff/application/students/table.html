@@ -24,7 +24,7 @@
             <td hidden >{{application.location }}</td>  
             <td hidden >{{application.desciption }}</td>  
             <td hidden >{{application.created_at }}</td>
-            <td>{% if application.cv %}<a href="{{ application.cv}}" download><span class="label label-primary" > {{ application.cv|cut:'users/' }}</span></a>{% else %}Not Available{% endif %}</td> 
+            <td>{% if application.cv %}<a href="{{ application.cv }}" download><span class="label label-primary"> {{ application.cv|cut:'cv/' }}</span></a>{% else %}Not Available{% endif %}</td> 
             <td><a href="{% url 'student:student-application-status-change' application.id %}"><span class="label label-success"> {{application.get_status_display}}</span></a></td> 
             <td> 
                 <a  class="ViewMyAppModalBtn"   id="app" app-data="{{ employers_job_applications }}"> <span class="label label-danger"><i class="fa fa-eye"></i></span> </a>

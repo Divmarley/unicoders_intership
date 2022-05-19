@@ -4,7 +4,7 @@ from application.models import EmployerApplication, JobApplication
 class StudentJobApplicationForm(ModelForm): 
     class Meta:
         model = JobApplication
-        fields = ['related_field', 'job_type', 'highest_qualification', 'yrs_of_experience', 'status', 'payment_budget', 'location','desciption']
+        fields = ['related_field', 'job_type', 'highest_qualification', 'yrs_of_experience', 'status', 'payment_budget', 'location','desciption','cv']
 
 class EmployerJobApplicationForm(ModelForm): 
     class Meta:

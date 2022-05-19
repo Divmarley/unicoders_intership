@@ -67,7 +67,7 @@ class DeleteEmployerJobApplication(LoginRequiredMixin, View):
         return JsonResponse({"message": message })
 
 
-class ChangeStudentApplicationStatus(LoginRequiredMixin,View):
+class ChangeEmployerApplicationStatus(LoginRequiredMixin,View):
     login_url = "account:login"
     redirect_field_name = "redirect_to"
     def get(self, request, id):
