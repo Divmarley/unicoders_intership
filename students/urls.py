@@ -7,5 +7,5 @@ urlpatterns = [
     path('',StudentJobApplicationView.as_view(),name="job-application"),
     path('job-table',StudentJobApplicationTableView.as_view(),name="get-job-table"),
     path('<int:id>/delete', DeleteStudentJobApplication.as_view(), name='student-application-delete'),
-    path("student-application-status-change", ChangeStudentApplicationStatus.as_view(), name="student-application-status-change"),
+    path("student-application-status-change/<int:id>", ChangeStudentApplicationStatus.as_view(), name="student-application-status-change"),
 ]  
