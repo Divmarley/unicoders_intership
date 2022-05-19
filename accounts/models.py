@@ -191,10 +191,24 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.name
 
-
+rating = (
+    (10 , 10),
+    (20 , 20), 
+    (30 , 30), 
+    (40 , 40), 
+    (50 , 50), 
+    (60 , 60), 
+    (70 , 70), 
+    (80 , 80), 
+    (90, 90), 
+    (100,100), 
+    
+    
+)
 class SkillSet (models.Model):
+    user = models.ForeignKey('User', related_name='user_skill', on_delete=models.CASCADE)
     name = models.CharField(max_length=60, unique=True)
-    rating = models.IntegerField() 
+    rating = models.IntegerField(choices=rating)
  
     class Meta :
         db_table = "skill_set"

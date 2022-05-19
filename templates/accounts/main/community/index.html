@@ -17,6 +17,7 @@
     <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
     {% include 'accounts/main/partials/bread_crumb.html' %}
+    
     <!-- ============================================================== -->
     <!-- End Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
@@ -27,7 +28,7 @@
         <div class="row">
             {% for community in community_list %}
             <div class="col-md-6 col-lg-3">
-                <img class="img-responsive" alt="user" src="{% static 'main/dist/images/big/c2.jpg' %}">
+                <img class="img-responsive" alt="user" src="{{ community.image.url  }} " width="100%">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">{{community.name|upper}}</h5>
@@ -36,7 +37,7 @@
                             <span><i class="ti-alarm-clock"></i> {{community.created_at}}</span>
                         </div>
                         <div class="d-flex no-block align-items-center p-t-10">
-                            <span><i class="ti-user"></i>{{community.created_by.name }}</span>
+                            <span><i class="ti-user"></i>{{community.created_by.name }}<i class="fa-solid fa-octagon-check"></i></span>
                         </div>
                         <div class="d-flex no-block align-items-center p-t-10">
                             <span><i class="fa fa-graduation-cap"></i> Students: 200+</span></span>

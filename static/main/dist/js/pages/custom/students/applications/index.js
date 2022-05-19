@@ -20,12 +20,13 @@ $("#formAddNew").on("submit", function(e){
     
         $('.btnAddNew').html('<i class="fa fa-spinner fa-spin"></i> ADDING NEW...').attr('disabled', true);
         let data = $this.serialize();
-        console.log(data); 
+        let  form_data = new FormData(); 
+        // console.log(data); 
+        console.log(form_data); 
         $.ajax({
             url: $this.attr('action'),
             type: "POST",
-            dateType: "json",
-            data: data,
+            dateType: "json", 
             success: function(response){
                 if(response.message=='success'){
                     swal({
@@ -38,12 +39,11 @@ $("#formAddNew").on("submit", function(e){
                         },
                     function(){
                         getDataTable();
-                        $("#formAddNew input:text").val("");
-                        // $("#formAddNew option[name='name']").focus();
+                        $("#formAddNew input:text").val(""); 
                         $("#exampleModal").modal('hide');
                     });
                 }else{
-                    swal("Error", response.message.cv, "warning");
+                    swal("Error",  response.message.cv, "warning");
                    
                 }
                 $('.btnAddNew').html('<i class="fa fa-plus-circle"></i> ADD NEW').attr('disabled', false);

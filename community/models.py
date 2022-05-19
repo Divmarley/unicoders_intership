@@ -24,8 +24,9 @@ class PostComment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 class Community(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True ,unique=True)
+    name = models.CharField(max_length=255 ,unique=True)
     slug = models.SlugField()
+    image = models.ImageField(upload_to="community", null=True)
     created_by = models.ForeignKey(UserProfile, related_name="community", on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -55,7 +56,7 @@ class CommunityFollower(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return  self.name
+        return  self.community.name
 
     def __unicode__(self):
-        return  self.name
+        return  self.community.name

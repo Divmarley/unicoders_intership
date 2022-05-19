@@ -1,0 +1,73 @@
+{% extends 'accounts/main/base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock title %}</title>
+{% block styles %}
+
+<link href="{% static 'main/assets/node_modules/calendar/dist/fullcalendar.css' %}" rel="stylesheet" />
+<!-- Timeline CSS -->
+<link href="{% static 'main/assets/node_modules/horizontal-timeline/css/horizontal-timeline.css' %}" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="{% static 'main/dist/css/style.min.css' %}" rel="stylesheet">
+<!-- page css -->
+<link href="{% static 'main/dist/css/pages/timeline-vertical-horizontal.css' %}" rel="stylesheet">
+{% endblock styles %}
+{% block content %}
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    {% include 'accounts/main/partials/bread_crumb.html' %}
+    
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <!-- .col -->
+        {% for job in jobs %}
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12 text-center">
+                                <a href="contact-detail.html"><img src="{% if profile.image %} {{ profile.image.url }} {% else %} {% static 'main/assets/images/user4-128x128.jpg' %} {% endif %}" alt="user" class="img-circle img-responsive" style="max-height: 210px;"></a>
+                            </div>
+                            <div class="col-md-8">
+                                <h5 class="card-title m-b-0">{{ job.title }}</h5> <small>{{job.related_field}}</small>
+                                <p>
+                                    <address>
+                                        795 Folsom Ave, Suite 600 San Francisco, CADGE 94107
+                                        <br/>
+                                        <br/>
+                                        <abbr title="Phone">P:</abbr> (123) 456-7890
+                                    </address>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        <!-- /.col -->
+       
+    </div>
+     
+    <!-- END MODAL -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar --> 
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+{% endblock content %}
+
+{% block scripts %}
+     
+{% endblock scripts %}
