@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views import View
 from django.template import loader
 from django.http import HttpResponse, JsonResponse
@@ -6,6 +7,7 @@ from accounts.models import UserProfile
 from django.contrib.auth.mixins import LoginRequiredMixin
 from application.forms import StudentJobApplicationForm
 from application.models import JobApplication
+from notifications.models import Notification
 from notifications.utilities import create_notification
 # Create your views here.
 class StudentJobApplicationView(LoginRequiredMixin,View):
@@ -16,7 +18,10 @@ class StudentJobApplicationView(LoginRequiredMixin,View):
     
     def get(self,request): 
         profile = UserProfile.objects.get(user_id=request.user.id)  
+        notifications = Notification.objects.filter(notification_type=1, is_read=False, to_user=request.user)
+
         context = {
+            'notifications': notifications,
             "title":"Student Applications",
             'form':self.form_class, 
             'profile':profile
@@ -68,18 +73,28 @@ class ChangeStudentApplicationStatus(LoginRequiredMixin,View):
     redirect_field_name = "redirect_to"
     def get(self, request, id):
         application = JobApplication.objects.get(id=id)
-        if application.status == 1:
-            application.status = 2
-            application.save()
-            content = "Your application is awaiting placement."
-            create_notification(request, application.user.id, 1, content)
-            return JsonResponse({"message":"Application status changed to Completed"})
-        elif application.status == 2:
-            application.status = 3
-            application.save()
-            content = "Your application has been approved."
-            create_notification(request, application.user.id, 1, content)
-            return JsonResponse({"message":"You have been placed sucessfully"})
-        elif application.status == 3:
-            application.status = 3
-            application.save()
+        profile = None
+        try:
+            profile = UserProfile.objects.get(id=application.user.id)
+            if application.status == 1:
+                application.status = 2
+                application.save()
+                content = "Your application is awaiting placement."
+                create_notification(request, profile.user, 1, content)
+                return redirect(reverse_lazy("staff:student-jp-index"))
+                # return JsonResponse({"message":"Application status changed to Completed"})
+            elif application.status == 2:
+                application.status = 3
+                application.save()
+                content = "Your application has been approved."
+                create_notification(request, profile.user, 1, content)
+                return redirect(reverse_lazy("staff:student-jp-index"))
+                # return JsonResponse({"message":"You have been placed sucessfully"})
+            elif application.status == 3:
+                application.status = 3
+                application.save()
+                return redirect(reverse_lazy("staff:student-jp-index"))
+
+        except UserProfile.DoesNotExist: pass
+       
+

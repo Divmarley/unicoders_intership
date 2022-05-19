@@ -1,11 +1,13 @@
  
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.views import View
 from accounts.models import UserProfile  
 from application.forms import *
 from django.template import loader 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from notifications.models import Notification
 
 from notifications.utilities import create_notification
 # Create your views here.
@@ -18,7 +20,10 @@ class EmployerJobApplicationView(LoginRequiredMixin,View):
     
     def get(self,request): 
         profile = UserProfile.objects.get(user_id=request.user.id)  
+        notifications = Notification.objects.filter(notification_type=1, is_read=False, to_user=request.user)
+
         context = {
+            'notifications': notifications,
             "title":"Employer Applications",
             'form':self.form_class, 
             'profile':profile
@@ -61,3 +66,32 @@ class DeleteEmployerJobApplication(LoginRequiredMixin, View):
         message = "success"
         return JsonResponse({"message": message })
 
+
+class ChangeEmployerApplicationStatus(LoginRequiredMixin,View):
+    login_url = "account:login"
+    redirect_field_name = "redirect_to"
+    def get(self, request, id):
+        application = EmployerApplication.objects.get(id=id)
+        profile = None
+        try:
+            profile = UserProfile.objects.get(id=application.user.id)
+            if application.status == 1:
+                application.status = 2
+                application.save()
+                content = "Your application is awaiting placement."
+                create_notification(request, profile.user, 1, content)
+                return redirect(reverse_lazy("staff:employer-jp-index"))
+                # return JsonResponse({"message":"Application status changed to Completed"})
+            elif application.status == 2:
+                application.status = 3
+                application.save()
+                content = "Your application has been approved."
+                create_notification(request, profile.user, 1, content)
+                return redirect(reverse_lazy("staff:employer-jp-index"))
+                # return JsonResponse({"message":"You have been placed sucessfully"})
+            elif application.status == 3:
+                application.status = 3
+                application.save()
+                return redirect(reverse_lazy("staff:employer-jp-index"))
+
+        except UserProfile.DoesNotExist: pass
