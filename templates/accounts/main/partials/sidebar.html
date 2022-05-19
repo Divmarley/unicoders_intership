@@ -88,14 +88,14 @@
             {% endif %}
           </ul>
         </li>
-        <li>
+        {% comment %} <li>
           <a
             class="waves-effect waves-dark"
             href="{% url 'account:messages' %}"
             aria-expanded="false"
             ><i class="ti-email"></i><span class="hide-menu">Messages</span></a
           >
-        </li>
+        </li> {% endcomment %}
         <li>
           <a
             class="waves-effect waves-dark"
@@ -121,7 +121,7 @@
         <li class="nav-small-cap">--- PROFESSIONAL</li>
         {% endcomment %}
         <li>
-          <a class="waves-effect waves-dark" href="{% url 'event:index' %}">
+          <a class="waves-effect waves-dark" href="{% url 'event:calendar' %}">
             <i class="ti-calendar"></i><span class="hide-menu">Event</span></a
           >
         </li>

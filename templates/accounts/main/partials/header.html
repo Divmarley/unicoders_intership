@@ -102,8 +102,9 @@
                       </div>
                       <div class="mail-contnet">
                         {% comment %} <h6>{{noti.content}}</h6> {% endcomment %}
-                        <span class="mail-desc">{{noti.content}}</span>
-                        <span class="time">9:30 AM</span>
+                        <span class="">{{noti.content}}</span>
+                        <span class="time">{{noti.created_at}}</span>
+                        
                       </div>
                     </a>
                   {% endfor %}

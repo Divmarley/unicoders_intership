@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from application.models import JobApplication,EmployerApplication
 from community.models import Community, CommunityFollower
+from notifications.models import Notification
 from notifications.utilities import create_notification
 from .models import Branch, SkillSet, SocialMediaLink, User, UserImage, UserProfile,Message
 from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME, update_session_auth_hash
@@ -112,12 +113,16 @@ class DashboardView(LoginRequiredMixin,View):
     template_name='accounts/main/dashboard.html' 
     def get(self, request): 
         if request.user.is_authenticated and request.user.is_active :
-           
+            notifications=[]
             try:
                 profile = UserProfile.objects.get(user_id=request.user.id)   
             except UserProfile.DoesNotExist:
                 redirect_url = self.request.GET.get('redirect_to', 'account:profile_create')
-                return redirect(redirect_url) 
+                return redirect(redirect_url)
+            if request.user.account_type == 1:
+                notifications = Notification.objects.filter(notification_type=2, is_read=False)
+            elif request.user.account_type == 2 or request.user.account_type == 3:
+                notifications = Notification.objects.filter(notification_type=1, is_read=False, to_user=request.user)
             users =  UserProfile.objects.all().count()
             student_application =  JobApplication.objects.all().count()
             employer_application =  EmployerApplication.objects.all().count()
@@ -125,6 +130,7 @@ class DashboardView(LoginRequiredMixin,View):
             top_community = Community.objects.filter().order_by('?')[0:4]
             community_followers =CommunityFollower.objects.filter(community_id=community).count()
             context={ 
+                'notifications': notifications,
                 'title':"Dashboard",
                 'profile':profile,
                 "users":users,
@@ -132,8 +138,7 @@ class DashboardView(LoginRequiredMixin,View):
                 "employer_application":employer_application,
                 "community":community,
                 "top_community":top_community,
-                "community_followers":community_followers
-            
+                "community_followers":community_followers            
             }
             return render(request,self.template_name,context)
         else: 
