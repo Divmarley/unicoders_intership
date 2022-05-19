@@ -17,6 +17,7 @@ urlpatterns = [
     path('create-skill', CreateSkillView.as_view(), name='create-skill'),
     path('profile/<int:id>/change-profile-image', CreateProfileImgae.as_view(), name="change-profile-image"),
     path('message/', UserMessage.as_view(), name="messages"),
+    
 
 
     path('password-reset/', PasswordResetView.as_view(

@@ -83,6 +83,85 @@
             </div>
         </div>
     </div>
+    <!-- BEGIN MODAL -->
+    <div class="modal none-border" id="my-event">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Add Event</strong></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                    <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-bs-dismiss="modal">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Add Category -->
+    <div class="modal fade none-border" id="add-new-event">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Add</strong> an Event</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" action="{% url 'event:index' %}" method="post" enctype="multipart/form-data">
+                        {% comment %} {{form}} {% endcomment %}
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input class="form-control form-white" placeholder="Enter event title" type="text" name="title" />
+                            </div> 
+                        </div>
+                        <div class="row m-t-20">
+                            <div class="col-md-6">
+                                <label class="form-label">Start Date</label>
+                                <input class="form-control form-white"  type="date" name="date" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Start Time</label>
+                                <input class="form-control form-white"  type="time" name="time" />
+                            </div> 
+                        </div>
+                        <div class="row m-t-20">
+                            <div class="col-md-12">
+                                <input class="form-control form-white" placeholder="Enter description"  type="text" name="description" />
+                            </div> 
+                        </div> 
+                        <div class="row m-t-20">
+                            <div class="col-md-6">
+                                <input class="form-control form-white"  type="text" placeholder="Enter Venue" name="venue" />
+                            </div> 
+                            <div class="col-md-6">
+                                <input class="form-control form-white"  type="number" placeholder="Enter Price" name="price" />
+                            </div> 
+                        </div>  
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-danger waves-effect waves-light save-category" data-bs-dismiss="modal">Save</button>
+                            <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <!-- END MODAL -->
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
 </div>
 
 {% endblock content %}

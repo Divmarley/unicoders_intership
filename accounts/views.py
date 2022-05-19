@@ -175,8 +175,8 @@ class ProfileView(LoginRequiredMixin,View):
     template_name='accounts/main/profile/index.html'
     def get(self, request): 
         social_media_link = SocialMediaLink.objects.filter(user_id=request.user.id) 
-        profile = UserProfile.objects.get(user_id=request.user.id)  
         skillset = SkillSet.objects.filter(user=request.user.id)  
+        profile = UserProfile.objects.get(user_id=request.user.id)  
         context={ 
             'profile':profile,
             "title":"Profile",
@@ -288,16 +288,15 @@ class ChangePasswordView(LoginRequiredMixin, View):
     redirect_field_name = "redirect_to"
     template_name = 'accounts/main/profile/index.html'
      
-    def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            form = PasswordChangeForm(request.user, request.POST)
-            if form.is_valid():
-                user = form.save()
-                update_session_auth_hash(request, user)  # Important!
-                # log_activity(self.request.user, self.request.user.business_id, "Changed your password")
-                return JsonResponse({"message": "success"})
-            else:
-                return JsonResponse({"message": form.errors})
+    def post(self, request, *args, **kwargs): 
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # update_session_auth_hash(request, user)  # Important!
+            # log_activity(self.request.user, self.request.user.business_id, "Changed your password")
+            return JsonResponse({"message": "success"})
+        else:
+            return JsonResponse({"message": form.errors})
 
 
 # class ResetPasswordView(View):

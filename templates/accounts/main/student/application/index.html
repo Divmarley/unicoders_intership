@@ -16,25 +16,27 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <div class="container">
+                    <div class="row">
                         {% comment %} <div class="row">
                            <form method="post" id="formAddNew" enctype="multipart/form-data">
                                 {% csrf_token %}
                                 <input type="file" name="test">
                                 <button type="submit">Test</button>
                             </form> {% endcomment %}
-                            <div class="col-md-2">
-                                <button
-                                type="button"
-                                class="btn btn-info text-white"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever="@mdo">
-                                <i class="fa fa-plus-circle"></i> Create New
-                            </button> 
+                            <div class="col-sm-10">
+
                             </div>
-                            <div class="col-md-10"></div>
+                            <div class="col-sm-2">
+                                <button
+                                    type="button"
+                                    class="btn btn-info text-white"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal" data-whatever="@mdo">
+                                    <i class="fa fa-plus-circle"></i> Create New
+                                </button> 
+                            </div>
                         </div>
                     </div>
-                    <div class="m-t-40 table-responsive" data-href="{% url 'student:get-job-table' %}">
+                    <div class="table-responsive" data-href="{% url 'student:get-job-table' %}">
                        
                     </div>
                 </div>
@@ -138,7 +140,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary text-white btnAddNew">Send message</button>
+                        <button type="submit" class="btn btn-primary text-white btnAddNew">Add</button>
                     </div>
                 </form>
             </div>
