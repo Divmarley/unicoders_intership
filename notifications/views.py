@@ -21,5 +21,4 @@ class ChangeNotificationStatusView(LoginRequiredMixin,View):
             message = "success"
             noti.save()
             return JsonResponse({"message":message})
-            noti.save()
          

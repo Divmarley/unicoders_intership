@@ -90,8 +90,10 @@ class EmployerJobApplicationStaffTableView(LoginRequiredMixin,View):
     def get(self, request,  *args, **kwargs):
         template = loader.get_template("accounts/main/staff/application/employers/table.html") 
         employer_job_applications = EmployerApplication.objects.filter(user=request.user.id)
-        profile = UserProfile.objects.get(user_id=request.user.id) 
+        profile = UserProfile.objects.get(user_id=request.user.id)
+        notifications = Notification.objects.filter(notification_type=2, is_read=False)
         context = { 
+            "notifications":notifications,
             'employer_job_applications': employer_job_applications,
             "profile":profile ,
         }
