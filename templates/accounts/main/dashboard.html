@@ -20,9 +20,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Users</h5>
-                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
-                        <h2><sup><i class="ti-arrow-up text-success"></i></sup> {{ users }}</h2>
-                    </div> 
+                    <h2 class="text-end">{{ users }}</h2>
                 </div>
             </div>
         </div> 
@@ -30,10 +28,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Student Applications</h5>
-                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
-                        
-                    </div> 
-                    <h2><sup><i class="ti-arrow-down text-primary"></i></sup> {{ student_application }}</h2>
+                    <h2 class="text-end">{{ student_application }}</h2>
                 </div>
             </div>
         </div> 
@@ -41,43 +36,106 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-uppercase">Employer Applications</h5>
-                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
-                        <h2><sup><i class="ti-arrow-up text-info"></i></sup> {{ employer_application }}</h2>
-                    </div> 
+                    <h2 class="text-end">{{ employer_application }}</h2>
                 </div>
             </div>
         </div> 
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase">Communities</h5>
+                    <h5 class="card-title text-uppercase">Events</h5>
+                    <h2 class="text-end">{{ community }}</h2>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        {% if request.user.account_type == 2 %}
+         
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Applications</h5>
                     <div class="text-end"> <span class="text-muted">Yearly Fees</span>
                         <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
                     </div> 
                 </div>
             </div>
         </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Applied</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Approved</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Pending</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2 class="color-red">{{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
         {% endif %}
+    </div>
 
-        {% if request.user.account_type == 2 %}
+    <div class="row">
+        {% if request.user.account_type == 3 %}
          
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase">My Applications</h5>
-                    <div class="text-end"> <span class="text-muted">Monthly Fees</span>
-                        
+                    <h5 class="card-title text-uppercase">Applications</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
                     </div> 
-                    <h2><sup><i class="ti-arrow-down text-primary"></i></sup> {{ student_application }}</h2>
                 </div>
             </div>
-        </div>  
+        </div>
         <div class="col-lg-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title text-uppercase">Communities</h5>
+                    <h5 class="card-title text-uppercase">Applied</h5>
                     <div class="text-end"> <span class="text-muted">Yearly Fees</span>
                         <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Approved</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2><sup><i class="ti-arrow-up text-inverse"></i></sup> {{ community }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase">Pending</h5>
+                    <div class="text-end"> <span class="text-muted">Yearly Fees</span>
+                        <h2 class="color-red">{{ community }}</h2>
                     </div> 
                 </div>
             </div>
@@ -93,7 +151,7 @@
     <!-- ============================================================== -->
     <!-- .row -->
     
-    <div class="row">
+    {% comment %} <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
@@ -145,13 +203,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
     <!-- /.row -->
     <!-- ============================================================== -->
     <!-- Comment - table -->
     <!-- ============================================================== -->
     <!-- row -->
-    <div class="row">
+    {% comment %} <div class="row">
         {% for top in top_community %}
         <div class="col-md-6 col-lg-3">
             <img class="img-responsive" alt="user" src="{{top.image.url }}" width="100%">
@@ -168,7 +226,7 @@
             </div>
         </div> 
         {% endfor %}
-    </div>
+    </div> {% endcomment %}
     <!-- row -->
     <!-- ============================================================== -->
     <!-- End Comment - chats -->

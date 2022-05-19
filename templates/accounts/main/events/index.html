@@ -112,11 +112,10 @@
                         {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
-                                <label class="form-label">Title</label>
                                 <input class="form-control form-white" placeholder="Enter event title" type="text" name="title" />
                             </div> 
                         </div>
-                        <div class="row">
+                        <div class="row m-t-20">
                             <div class="col-md-6">
                                 <label class="form-label">Start Date</label>
                                 <input class="form-control form-white"  type="date" name="date" />
@@ -126,23 +125,16 @@
                                 <input class="form-control form-white"  type="time" name="time" />
                             </div> 
                         </div>
-                        <div class="row">
+                        <div class="row m-t-20">
                             <div class="col-md-12">
-                                <label class="form-label">Description</label>
                                 <input class="form-control form-white" placeholder="Enter description"  type="text" name="description" />
                             </div> 
-                            <div class="col-md-12">
-                                <br>
-                                <input class="form-control form-white" type="file" name="image" />
-                            </div> 
                         </div> 
-                        <div class="row">
+                        <div class="row m-t-20">
                             <div class="col-md-6">
-                                <label class="form-label">Venue</label>
                                 <input class="form-control form-white"  type="text" placeholder="Enter Venue" name="venue" />
                             </div> 
                             <div class="col-md-6">
-                                <label class="form-label">Price</label>
                                 <input class="form-control form-white"  type="number" placeholder="Enter Price" name="price" />
                             </div> 
                         </div>  

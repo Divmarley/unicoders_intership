@@ -80,7 +80,9 @@
           >
             <i class="ti-bell"></i>
             <div class="notify">
-              <span class="heartbit"></span> <span class="point"></span>
+              {% if notifications%}
+                <span class="heartbit"></span> <span class="point"></span>
+              {% endif %}
             </div>
           </a>
           <div

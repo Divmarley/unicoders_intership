@@ -56,11 +56,51 @@
         <div class="col-lg-8 col-xlg-9 col-md-7">
             <div class="card">
                 <!-- Nav tabs -->
-                <ul class="nav nav-tabs profile-tab" role="tablist">
-                    <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">Activity</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">Biography</a> </li>
-                    <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab">Update Details</a> </li>
-                </ul>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <ul class="nav nav-tabs profile-tab" role="tablist">
+                            <li class="nav-item"> <a class="nav-link active" data-bs-toggle="tab" href="#home" role="tab">Posts</a> </li>
+                            <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#profile" role="tab">Details</a> </li>
+                            <li class="nav-item"> <a class="nav-link" data-bs-toggle="tab" href="#settings" role="tab">Update Details</a> </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-circle btn-info m-10" data-bs-toggle="modal" data-bs-target="#verticalcenter"><i class="fa fa-plus"></i></button>
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- sample modal content -->
+                                <div id="verticalcenter" class="modal" role="dialog" aria-labelledby="vcenter" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="vcenter">Create post</h4>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" placeholder="What's on your mind?" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="text-end"><button type="button" class="btn btn-info waves-effect text-white" data-bs-dismiss="modal">Post</button></div>
+                                            </div>
+                                            {% comment %} <div class="modal-footer">
+                                                
+                                            </div> {% endcomment %}
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+                                
+                                {% comment %} <img src="../assets/images/alert/model.png" alt="default" data-bs-toggle="modal" data-bs-target="#verticalcenter" class="model_img img-responsive" /> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active" id="home" role="tabpanel">
@@ -80,7 +120,26 @@
                                                 <div class="col-lg-3 col-md-6 m-b-20"><img src="../assets/images/big/img4.jpg" class="img-responsive radius" /></div>
                                             </div>
                                             {% endif %}
-                                            <div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">{{post.count }} comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> </div>
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <!-- sample modal content -->
+                                                    <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+                                                        <div class="modal-dialog modal-sm">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title" id="mySmallModalLabel">Small modal</h4>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                                                </div>
+                                                                <div class="modal-body"> content will be here </div>
+                                                            </div>
+                                                            <!-- /.modal-content -->
+                                                        </div>
+                                                        <!-- /.modal-dialog -->
+                                                    </div>
+                                                    <!-- /.modal -->
+                                                    <div class="like-comm" data-bs-toggle="modal" data-bs-target=".bs-example-modal-sm"> <a href="javascript:void(0)" class="link m-r-10">{{post.count }} comment</a> </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div> 
