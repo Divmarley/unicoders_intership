@@ -9,12 +9,12 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import View
 from application.models import JobApplication,EmployerApplication
-from community.models import Community
+from community.models import Community, CommunityFollower
 from notifications.utilities import create_notification
-from .models import Branch, SocialMediaLink, User, UserImage, UserProfile,Message
+from .models import Branch, SkillSet, SocialMediaLink, User, UserImage, UserProfile,Message
 from django.contrib.auth import authenticate, login, logout, REDIRECT_FIELD_NAME, update_session_auth_hash
 from django.contrib import messages
-from accounts.forms import CreateAccountForm, CreateProfileForm, CreateSocialMediaLinkViewForm, EditUserImageForm, LoginForm, MessageForm, SetPasswordForm
+from accounts.forms import CreateAccountForm, CreateProfileForm, CreateSkillForm, CreateSocialMediaLinkViewForm, EditUserImageForm, LoginForm, MessageForm, SetPasswordForm
 from django.core.mail import send_mail, EmailMessage,EmailMultiAlternatives
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.contrib.auth.forms import PasswordChangeForm
@@ -121,8 +121,9 @@ class DashboardView(LoginRequiredMixin,View):
             users =  UserProfile.objects.all().count()
             student_application =  JobApplication.objects.all().count()
             employer_application =  EmployerApplication.objects.all().count()
-            community =  Community.objects.all().count()
+            community =  Community.objects.all().count() 
             top_community = Community.objects.filter().order_by('?')[0:4]
+            community_followers =CommunityFollower.objects.filter(community_id=community).count()
             context={ 
                 'title':"Dashboard",
                 'profile':profile,
@@ -130,7 +131,8 @@ class DashboardView(LoginRequiredMixin,View):
                 "student_application":student_application,
                 "employer_application":employer_application,
                 "community":community,
-                "top_community":top_community
+                "top_community":top_community,
+                "community_followers":community_followers
             
             }
             return render(request,self.template_name,context)
@@ -169,10 +171,12 @@ class ProfileView(LoginRequiredMixin,View):
     def get(self, request): 
         social_media_link = SocialMediaLink.objects.filter(user_id=request.user.id) 
         profile = UserProfile.objects.get(user_id=request.user.id)  
+        skillset = SkillSet.objects.filter(user=request.user.id)  
         context={ 
             'profile':profile,
             "title":"Profile",
-            'social_media_link':social_media_link
+            'social_media_link':social_media_link,
+            "skillset":skillset
         }
         return render(request,self.template_name,context)
 
@@ -380,6 +384,24 @@ class CreateSocialMediaLinkView(LoginRequiredMixin, View):
                 return JsonResponse({'message':'success'})
             return JsonResponse({'message':form.errors})
         return HttpResponse('Wrong request')
+
+
+class CreateSkillView(LoginRequiredMixin, View):
+    login_url = "accounts:login"
+    redirect_field_name = "redirect_to" 
+    form_class = CreateSkillForm
+
+    def post(self, request, *args, **kwargs):
+        is_ajax = request.headers.get("X-Requested-With") == "XMLHttpRequest"
+        # if is_ajax:
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            profile_save =form.save(commit=False)
+            form.instance.user_id = request.user.id
+            profile_save.save()
+            return JsonResponse({'message':'success'})
+        return JsonResponse({'message':form.errors})
+        # return HttpResponse('Wrong request')
 
      
 

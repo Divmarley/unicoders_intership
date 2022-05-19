@@ -40,24 +40,6 @@
                     <hr>
                     <!-- /.row -->
                     <!-- .row -->
-                    {% comment %} <div class="row text-center m-t-10">
-                        <div class="col-md-6 border-end"><strong>Email ID</strong>
-                            <p>jondoe@gmail.com</p>
-                        </div>
-                        <div class="col-md-6"><strong>Phone</strong>
-                            <p>+123 456 789</p>
-                        </div>
-                    </div> {% endcomment %}
-                    <!-- /.row -->
-                    {% comment %} <hr> {% endcomment %}
-                    <!-- .row -->
-                    {% comment %} <div class="row text-center m-t-10">
-                        <div class="col-md-12"><strong>Address</strong>
-                            <p>E104, Dharti-2, Chandlodia Ahmedabad
-                                <br/> Gujarat, India.</p>
-                        </div>
-                    </div> {% endcomment %}
-                    {% comment %} <hr> {% endcomment %}
                     <br/>
                     <div class="row m-t-15">
                       <center>
@@ -86,7 +68,7 @@
                             <div class="profiletimeline">
                                 {% for post in post %}
                                 <div class="sl-item">
-                                    <div class="sl-left"> <img src="{{ profile.image.url }}" alt="user" class="img-circle" /> </div>
+                                    <div class="sl-left"> <img src="{{post.obj.created_by.image.url }}" alt="user" class="img-circle" /> </div>
                                     <div class="sl-right">
                                         <div><a href="javascript:void(0)" class="link">{{post.obj.created_by}}</a> <span class="sl-date">{{ post.obj.created_at|timesince }}</span>
                                             <p>{{ post.obj.description }}</p>

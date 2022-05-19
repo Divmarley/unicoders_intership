@@ -56,7 +56,7 @@ class CommunityFollower(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return  self.name
+        return  self.community.name
 
     def __unicode__(self):
-        return  self.name
+        return  self.community.name
